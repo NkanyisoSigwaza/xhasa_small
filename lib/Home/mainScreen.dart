@@ -10,6 +10,7 @@ class mainScreen extends StatefulWidget {
 
 class _mainScreenState extends State<mainScreen> {
   List<String> words = ["aa","bb","cc","dd","ee","ff","gg","hh","ii"]; // example
+
   List<Business> businesses = [
     Business(
       name: "Brenda's Salon",
@@ -37,7 +38,7 @@ class _mainScreenState extends State<mainScreen> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title:Text("XhasaSmall"),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.deepPurpleAccent[200],
         centerTitle: true,
       ),
       body: Column(
@@ -49,34 +50,42 @@ class _mainScreenState extends State<mainScreen> {
 
 
           SizedBox(
-            height: 30,
+            //height: 30,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-            Container(
-              width:MediaQuery.of(context).size.width -100,
-              child: TextFormField(
-              controller: myController,
-              decoration: textInputDecoration.copyWith(hintText: "Enter product/service"),
-              //initialValue: "Order Number",
-          ),
+          Container(
+            height: 100,
+            color:Colors.grey,
+            child: Row(
+
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Container(
+                width:MediaQuery.of(context).size.width -200,
+                child: TextFormField(
+                controller: myController,
+                decoration: textInputDecoration.copyWith(hintText: "Enter product/service"),
+                //initialValue: "Order Number",
             ),
+              ),
 
 
 
-              FlatButton(
-                child: Text("Search"),
-                onPressed: (){
-                  print("button clicked this is all she wrote ${myController.value.text}");
-                },
-                color:Colors.deepPurple,
-              )
-            ],
+                Container(
+                  height:60,
+                  child: FlatButton(
+                    child: Text("Search"),
+                    onPressed: (){
+                      print("button clicked this is all she wrote ${myController.value.text}");
+                    },
+                    color:Colors.deepPurpleAccent[200],
+                  ),
+                )
+              ],
 
+            ),
           ),
           SizedBox(
-            height:30,
+            height:60,
           ),
 
           Expanded( //So there is no overflow. allows grid to expand
@@ -92,7 +101,7 @@ class _mainScreenState extends State<mainScreen> {
                       Text(
                           businesses[index].name,
                         style: TextStyle(
-                          fontSize: 20
+                          fontSize: 20,
                         ),
                       ),
                       SizedBox(
@@ -108,24 +117,27 @@ class _mainScreenState extends State<mainScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height:20,
+                      ),
                     ],
                   );
                 }),
           ),
           Container(
-          //  color: Colors.grey,
+           color: Colors.grey,
 
-           height: 75,
+           height: 60,
 //            child: CircleAvatar(
 //              backgroundImage: AssetImage("Picture/xhasaSmallLogo.jpg"),
 //              radius: 150,
 //            ),
           child: Image(
             image:AssetImage("Picture/xhasaSmallLogo.jpg") ,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
 
-           width: MediaQuery.of(context).size.width -150,
+           width: MediaQuery.of(context).size.width,
             //height:60,
           ),
 
