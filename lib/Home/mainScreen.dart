@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xhasasmall/Authentication/Register.dart';
 import 'package:xhasasmall/Models/Business.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
@@ -36,22 +37,55 @@ class _mainScreenState extends State<mainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title:Text("XhasaSmall"),
-        backgroundColor: Colors.deepPurpleAccent[200],
-        centerTitle: true,
-      ),
+//      appBar: AppBar(
+//        //title:Text("XhasaSmall"),
+//        backgroundColor: Colors.deepPurpleAccent[200],
+//        centerTitle: true,
+//        leading: Container(
+//          height:300,
+//          width:100,
+//          color:Colors.pinkAccent,
+//          child: Image(
+//            image:AssetImage("Picture/xhasaSmallLogo.jpg"),
+//
+//          ),
+//        ),
+//        actions: [
+//          Container(
+//            height:300,
+//            width:100,
+//            color:Colors.pinkAccent,
+//            child: Image(
+//              image:AssetImage("Picture/xhasaSmallLogo.jpg"),
+//
+//            ),
+//          ),
+//        ],
+//      ),
       body: Column(
         //mainAxisSize: MainAxisSize.max,
         //mainAxisAlignment: MainAxisAlignment.,
         children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              height:100,
+              width:200,
+              color:Colors.white,
+              child: Image(
+                image:AssetImage("Picture/xhasaSmallLogo.jpg"),
+                fit:BoxFit.fill,
 
-
-
-
-          SizedBox(
-            //height: 30,
+              ),
+            ),
           ),
+
+
+
+
+
+
+
           Container(
             height: 100,
             color:Colors.grey,
@@ -76,6 +110,14 @@ class _mainScreenState extends State<mainScreen> {
                     child: Text("Search"),
                     onPressed: (){
                       print("button clicked this is all she wrote ${myController.value.text}");
+                      setState(() {
+                        //Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Register())
+                        );
+                      });
                     },
                     color:Colors.deepPurpleAccent[200],
                   ),
@@ -124,22 +166,27 @@ class _mainScreenState extends State<mainScreen> {
                   );
                 }),
           ),
-          Container(
-           color: Colors.grey,
-
-           height: 60,
-//            child: CircleAvatar(
-//              backgroundImage: AssetImage("Picture/xhasaSmallLogo.jpg"),
-//              radius: 150,
+//            Container(
+//             color: Colors.white,
+//
+//             height: 60,
+////            child: CircleAvatar(
+////              backgroundImage: AssetImage("Picture/xhasaSmallLogo.jpg"),
+////              radius: 150,
+////            ),
+//            child: Expanded(
+//              child: Padding(
+//                padding: const EdgeInsets.symmetric(horizontal: 22,vertical: 0),
+//                child: Image(
+//                  image:AssetImage("Picture/xhasaSmallLogo.jpg") ,
+//                  fit: BoxFit.contain,
+//                ),
+//              ),
 //            ),
-          child: Image(
-            image:AssetImage("Picture/xhasaSmallLogo.jpg") ,
-            fit: BoxFit.contain,
-          ),
-
-           width: MediaQuery.of(context).size.width,
-            //height:60,
-          ),
+//
+//             width: MediaQuery.of(context).size.width,
+//              //height:60,
+//            ),
 
         ],
 
