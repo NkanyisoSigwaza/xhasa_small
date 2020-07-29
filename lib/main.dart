@@ -28,7 +28,20 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: mainScreen(),
+      home: Container(
+        width:100,
+        height:100,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                    "Picture/background.png"
+                ),
+
+                fit: BoxFit.cover
+            )
+        ),
+        child:mainScreen()
+      ),
     );
   }
 }

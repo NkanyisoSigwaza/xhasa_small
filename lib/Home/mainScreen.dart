@@ -9,10 +9,12 @@ class mainScreen extends StatefulWidget {
 
 class _mainScreenState extends State<mainScreen> {
   List<String> words = ["aa","bb","cc","dd","ee","ff","gg","hh","ii"]; // example
+
   final myController = TextEditingController(); // where we will get user input
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title:Text("XhasaSmall"),
         backgroundColor: Colors.deepPurple,
@@ -27,7 +29,7 @@ class _mainScreenState extends State<mainScreen> {
 
 
           SizedBox(
-            height: 10,
+            height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +56,7 @@ class _mainScreenState extends State<mainScreen> {
 
           ),
           SizedBox(
-            height:10,
+            height:30,
           ),
 
           Expanded( //So there is no overflow. allows grid to expand
@@ -65,8 +67,11 @@ class _mainScreenState extends State<mainScreen> {
                 shrinkWrap: true,
                 itemCount: words.length,
                 itemBuilder: (context,index){
-                  return Card(
-                    child:Text(words[index]),
+                  return Column(
+                    children:[
+                      Text(words[index]),
+                      Text("$index"),
+                    ],
                   );
                 }),
           ),
