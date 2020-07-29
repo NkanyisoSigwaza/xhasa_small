@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xhasasmall/Authentication/SignIn.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
 class Register extends StatefulWidget {
@@ -100,7 +101,16 @@ class _RegisterState extends State<Register> {
               height:50,
               width:150,
               child: FlatButton(
-                onPressed: (){},
+                onPressed: (){
+                  setState(() {
+                    //Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignIn())
+                    );
+                  });
+                },
                 child: Text("Register"),
                 color:Colors.deepPurpleAccent,
               ),

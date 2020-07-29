@@ -37,34 +37,9 @@ class _mainScreenState extends State<mainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-//      appBar: AppBar(
-//        //title:Text("XhasaSmall"),
-//        backgroundColor: Colors.deepPurpleAccent[200],
-//        centerTitle: true,
-//        leading: Container(
-//          height:300,
-//          width:100,
-//          color:Colors.pinkAccent,
-//          child: Image(
-//            image:AssetImage("Picture/xhasaSmallLogo.jpg"),
-//
-//          ),
-//        ),
-//        actions: [
-//          Container(
-//            height:300,
-//            width:100,
-//            color:Colors.pinkAccent,
-//            child: Image(
-//              image:AssetImage("Picture/xhasaSmallLogo.jpg"),
-//
-//            ),
-//          ),
-//        ],
-//      ),
+
       body: Column(
-        //mainAxisSize: MainAxisSize.max,
-        //mainAxisAlignment: MainAxisAlignment.,
+
         children: [
           Padding(
             padding: const EdgeInsets.all(20),
@@ -98,7 +73,7 @@ class _mainScreenState extends State<mainScreen> {
                 child: TextFormField(
                 controller: myController,
                 decoration: textInputDecoration.copyWith(hintText: "Enter product/service"),
-                //initialValue: "Order Number",
+
             ),
               ),
 
@@ -166,27 +141,7 @@ class _mainScreenState extends State<mainScreen> {
                   );
                 }),
           ),
-//            Container(
-//             color: Colors.white,
-//
-//             height: 60,
-////            child: CircleAvatar(
-////              backgroundImage: AssetImage("Picture/xhasaSmallLogo.jpg"),
-////              radius: 150,
-////            ),
-//            child: Expanded(
-//              child: Padding(
-//                padding: const EdgeInsets.symmetric(horizontal: 22,vertical: 0),
-//                child: Image(
-//                  image:AssetImage("Picture/xhasaSmallLogo.jpg") ,
-//                  fit: BoxFit.contain,
-//                ),
-//              ),
-//            ),
-//
-//             width: MediaQuery.of(context).size.width,
-//              //height:60,
-//            ),
+
 
         ],
 

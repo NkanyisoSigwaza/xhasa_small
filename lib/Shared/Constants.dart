@@ -5,12 +5,12 @@ const textInputDecoration = InputDecoration(
   filled:true,
   enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(
-          color: Colors.white,
+          color: Colors.grey,
           width:2)
   ),
   focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
-          color: Colors.grey,
+          color: Colors.black,
           width:2
       )
   ),
