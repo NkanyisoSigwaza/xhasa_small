@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class mainScreen extends StatefulWidget {
@@ -17,13 +18,23 @@ class _mainScreenState extends State<mainScreen> {
       ),
       body: Column(
         //mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //mainAxisAlignment: MainAxisAlignment.,
         children: [
+
+          Image(
+            image: AssetImage("Picture/xhasaSmallLogo.jpg"),
+            //t:BoxFit.fitHeight
+          ),
+
+
+          SizedBox(
+            height: 10,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                child:Text("Will Add later")
-              ),
+
+
               FlatButton(
                 child: Text("Search"),
                 onPressed: (){},
@@ -32,6 +43,10 @@ class _mainScreenState extends State<mainScreen> {
             ],
 
           ),
+          SizedBox(
+            height:10,
+          ),
+
           Expanded( //So there is no overflow. allows grid to expand
             child: GridView.builder(
                 gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
@@ -47,9 +62,14 @@ class _mainScreenState extends State<mainScreen> {
           ),
           Container(
             color: Colors.grey,
-            child:Text("Hello"),
+//            child: Expanded(
+//              child: Image(
+//                image: AssetImage("Picture/xhasaSmallLogo.jpg"),
+//                fit:BoxFit.fill,
+//              ),
+//            ),
             width: MediaQuery.of(context).size.width,
-            height:80,
+            height:60,
           )
         ],
 
