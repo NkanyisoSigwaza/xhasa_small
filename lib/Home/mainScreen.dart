@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xhasasmall/Models/Business.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
 class mainScreen extends StatefulWidget {
@@ -9,6 +10,25 @@ class mainScreen extends StatefulWidget {
 
 class _mainScreenState extends State<mainScreen> {
   List<String> words = ["aa","bb","cc","dd","ee","ff","gg","hh","ii"]; // example
+  List<Business> businesses = [
+    Business(
+      name: "Brenda's Salon",
+      url:"https://smallbiztrends.com/wp-content/uploads/2019/03/Hair-Salon-850x476.png"
+
+    ),
+    Business(
+      name:"Kota Joe",
+      url:"https://www.eatout.co.za/wp-content/uploads/2016/01/Kota-Joe-12-600x450.jpg"
+    ),
+    Business(
+      name:"fredsane",
+      url:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSZJt0b4KECSuEFQxUxWY6g0qSjtvXx9HXvdg&usqp=CAU"
+    ),
+    Business(
+      name:"warLords",
+      url:"https://orhl.net/images/icon-warlords.jpg"
+    ),
+  ];
 
   final myController = TextEditingController(); // where we will get user input
   @override
@@ -65,12 +85,29 @@ class _mainScreenState extends State<mainScreen> {
                 crossAxisCount: 2),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: words.length,
+                itemCount: businesses.length,
                 itemBuilder: (context,index){
                   return Column(
                     children:[
-                      Text(words[index]),
-                      Text("$index"),
+                      Text(
+                          businesses[index].name,
+                        style: TextStyle(
+                          fontSize: 20
+                        ),
+                      ),
+                      SizedBox(
+                        height:10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width:150,
+                          height:100,
+                          child: Image(
+                            image:NetworkImage(businesses[index].url),
+                            fit:BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ],
                   );
                 }),
@@ -78,18 +115,20 @@ class _mainScreenState extends State<mainScreen> {
           Container(
           //  color: Colors.grey,
 
-           height: 90,
+           height: 75,
 //            child: CircleAvatar(
 //              backgroundImage: AssetImage("Picture/xhasaSmallLogo.jpg"),
 //              radius: 150,
 //            ),
           child: Image(
             image:AssetImage("Picture/xhasaSmallLogo.jpg") ,
+            fit: BoxFit.cover,
           ),
 
-           width: MediaQuery.of(context).size.width/2,
+           width: MediaQuery.of(context).size.width -150,
             //height:60,
-          )
+          ),
+
         ],
 
 
