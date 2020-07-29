@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xhasasmall/Shared/Constants.dart';
 
 class mainScreen extends StatefulWidget {
   @override
@@ -7,7 +8,8 @@ class mainScreen extends StatefulWidget {
 }
 
 class _mainScreenState extends State<mainScreen> {
-  List<String> words = ["aa","bb","cc","dd","ee","ff","gg","hh","ii"];
+  List<String> words = ["aa","bb","cc","dd","ee","ff","gg","hh","ii"]; // example
+  final myController = TextEditingController(); // where we will get user input
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,23 +23,31 @@ class _mainScreenState extends State<mainScreen> {
         //mainAxisAlignment: MainAxisAlignment.,
         children: [
 
-          Image(
-            image: AssetImage("Picture/xhasaSmallLogo.jpg"),
-            //t:BoxFit.fitHeight
-          ),
+
 
 
           SizedBox(
             height: 10,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+            Container(
+              width:MediaQuery.of(context).size.width -100,
+              child: TextFormField(
+              controller: myController,
+              decoration: textInputDecoration.copyWith(hintText: "Enter product/service"),
+              //initialValue: "Order Number",
+          ),
+            ),
+
 
 
               FlatButton(
                 child: Text("Search"),
-                onPressed: (){},
+                onPressed: (){
+                  print("button clicked this is all she wrote ${myController.value.text}");
+                },
                 color:Colors.deepPurple,
               )
             ],
@@ -61,15 +71,19 @@ class _mainScreenState extends State<mainScreen> {
                 }),
           ),
           Container(
-            color: Colors.grey,
-//            child: Expanded(
-//              child: Image(
-//                image: AssetImage("Picture/xhasaSmallLogo.jpg"),
-//                fit:BoxFit.fill,
-//              ),
+          //  color: Colors.grey,
+
+           height: 90,
+//            child: CircleAvatar(
+//              backgroundImage: AssetImage("Picture/xhasaSmallLogo.jpg"),
+//              radius: 150,
 //            ),
-            width: MediaQuery.of(context).size.width,
-            height:60,
+          child: Image(
+            image:AssetImage("Picture/xhasaSmallLogo.jpg") ,
+          ),
+
+           width: MediaQuery.of(context).size.width/2,
+            //height:60,
           )
         ],
 
