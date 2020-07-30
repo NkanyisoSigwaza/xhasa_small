@@ -99,7 +99,7 @@ class api{
 
 
     final response = await get(_url, headers: <String, String> {
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-Type': 'application/js,on; charset=UTF-8',
     });
 
     List<dynamic> temp = json.decode(response.body);
