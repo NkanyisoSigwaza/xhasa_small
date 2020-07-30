@@ -50,12 +50,17 @@ class _mainScreenState extends State<mainScreen> {
      // url:"https://orhl.net/images/icon-warlords.jpg"
     ),
   ];
-  List<Business>Businesses;
+  dynamic Businesses;
   void initState() {
     // TODO: implement initState
    // Businesses = (api().fetchAll()).cast<Business>();
     api().fetchAll().then((value){
-      Businesses = value.cast<Business>();
+      setState(() {
+        Businesses = value;
+      });
+
+//      print(value[0].name);
+      print("done");
     });
     super.initState();
   }

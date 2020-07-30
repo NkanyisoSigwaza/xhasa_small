@@ -3,7 +3,7 @@ import 'package:xhasasmall/Models/Business.dart';
 import 'package:xhasasmall/Services/api.dart';
 
 class BusinessDetail extends StatefulWidget {
-  Business business;
+  dynamic business;
 
 
   BusinessDetail({this.business});
@@ -12,7 +12,7 @@ class BusinessDetail extends StatefulWidget {
 }
 
 class _BusinessDetailState extends State<BusinessDetail> {
-  List<Business>Businesses;
+
   @override
 
   @override
