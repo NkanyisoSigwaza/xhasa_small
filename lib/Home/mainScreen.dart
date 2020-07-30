@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xhasasmall/Authentication/Register.dart';
+import 'package:xhasasmall/Home/BusinessDetail.dart';
 import 'package:xhasasmall/Models/Business.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
@@ -15,20 +16,36 @@ class _mainScreenState extends State<mainScreen> {
   List<Business> businesses = [
     Business(
       name: "Brenda's Salon",
-      url:"https://smallbiztrends.com/wp-content/uploads/2019/03/Hair-Salon-850x476.png"
+      about:"We work with anything that has to do with hair",
+      tag:"Salon",
+      owner: "Brenda",
+      contact:"Breanda@gmail.com"
+      //url:"https://smallbiztrends.com/wp-content/uploads/2019/03/Hair-Salon-850x476.png"
 
     ),
     Business(
       name:"Kota Joe",
-      url:"https://www.eatout.co.za/wp-content/uploads/2016/01/Kota-Joe-12-600x450.jpg"
+        about:"Food or nothing",
+        tag:"Food",
+        owner: "Joe",
+        contact:"joe@gmail.com"
+      //url:"https://www.eatout.co.za/wp-content/uploads/2016/01/Kota-Joe-12-600x450.jpg"
     ),
     Business(
       name:"fredsane",
-      url:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSZJt0b4KECSuEFQxUxWY6g0qSjtvXx9HXvdg&usqp=CAU"
+        about:"we work with people who are currently in the friendzone",
+        tag:"lonely",
+        owner: "Freddy",
+        contact:"freddy@gmail.com"
+     // url:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSZJt0b4KECSuEFQxUxWY6g0qSjtvXx9HXvdg&usqp=CAU"
     ),
     Business(
       name:"warLords",
-      url:"https://orhl.net/images/icon-warlords.jpg"
+        about:"We are always ready for battle",
+        tag:"War",
+        owner: "Nkanyiso",
+        contact:"nkanyiso@gmail.com"
+     // url:"https://orhl.net/images/icon-warlords.jpg"
     ),
   ];
 
@@ -115,10 +132,23 @@ class _mainScreenState extends State<mainScreen> {
                 itemBuilder: (context,index){
                   return Column(
                     children:[
-                      Text(
-                          businesses[index].name,
-                        style: TextStyle(
-                          fontSize: 20,
+                      GestureDetector(
+                        onTap:(){
+                          print("You have selected ${businesses[index].name}");
+                          setState(() {
+                            //Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => BusinessDetail(business: businesses[index]))
+                            );
+                          });
+                        },
+                        child: Text(
+                            businesses[index].name,
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -128,10 +158,10 @@ class _mainScreenState extends State<mainScreen> {
                         child: Container(
                           width:150,
                           height:100,
-                          child: Image(
-                            image:NetworkImage(businesses[index].url),
-                            fit:BoxFit.cover,
-                          ),
+//                          child: Image(
+//                            image:NetworkImage(businesses[index].url),
+//                            fit:BoxFit.cover,
+//                          ),
                         ),
                       ),
                       SizedBox(
