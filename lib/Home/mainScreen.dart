@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:xhasasmall/Authentication/Register.dart';
 import 'package:xhasasmall/Home/BusinessDetail.dart';
 import 'package:xhasasmall/Models/Business.dart';
+import 'package:xhasasmall/Services/api.dart';
+//import 'package:xhasasmall/Services/api.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
 class mainScreen extends StatefulWidget {
@@ -48,11 +50,23 @@ class _mainScreenState extends State<mainScreen> {
      // url:"https://orhl.net/images/icon-warlords.jpg"
     ),
   ];
-
+  List<Business>Businesses;
+  void initState() {
+    // TODO: implement initState
+   // Businesses = (api().fetchAll()).cast<Business>();
+    api().fetchAll().then((value){
+      Businesses = value.cast<Business>();
+    });
+    super.initState();
+  }
   final myController = TextEditingController(); // where we will get user input
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return Businesses ==null? Container(
+      child: Text(""
+          "Nothing here"),
+    ) :Scaffold(
       backgroundColor: Colors.transparent,
 
       body: Column(
@@ -128,24 +142,24 @@ class _mainScreenState extends State<mainScreen> {
                 crossAxisCount: 2),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: businesses.length,
+                itemCount: Businesses.length,
                 itemBuilder: (context,index){
                   return Column(
                     children:[
                       GestureDetector(
                         onTap:(){
-                          print("You have selected ${businesses[index].name}");
+                          print("You have selected ${Businesses[index].name}");
                           setState(() {
                             //Navigator.pop(context);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => BusinessDetail(business: businesses[index]))
+                                    builder: (context) => BusinessDetail(business: Businesses[index]))
                             );
                           });
                         },
                         child: Text(
-                            businesses[index].name,
+                            Businesses[index].name,
                           style: TextStyle(
                             fontSize: 20,
                           ),
