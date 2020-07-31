@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xhasasmall/Authentication/SignIn.dart';
+import 'package:xhasasmall/Services/api.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
 class Register extends StatefulWidget {
@@ -11,6 +12,8 @@ class _RegisterState extends State<Register> {
   final customerNameController = TextEditingController(); // where we will get user input
   final customerPasswordController = TextEditingController();
   final customerEmailContactController = TextEditingController();
+
+  String registerFailed = "";
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +60,15 @@ class _RegisterState extends State<Register> {
             SizedBox(
               height:30
             ),
+            Text(
+              registerFailed,
+              style:TextStyle(
+                color:Colors.red,
+              )
+            ),
+            SizedBox(
+              height:10
+            ),
             Container(
               child:Text(
                   "Register",
@@ -95,21 +107,68 @@ class _RegisterState extends State<Register> {
               ),
             ),
             SizedBox(
-              height:60
-            ),
-            Container(
               height:50,
-              width:150,
-              child: FlatButton(
-                onPressed: (){
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: (){
                   setState(() {
-                    //Navigator.pop(context);
+                    Navigator.pop(context); // so that it doesn't return to registration
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => SignIn())
                     );
                   });
+                },
+                child: Container(
+                  height:250,
+                  width:250,
+                  child: Text(
+                      "Already have an account? Sign in",
+                    style:TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 15,
+                    )
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height:60
+            ),
+            Container(
+              height:50,
+              width:150,
+              child: FlatButton(
+                onPressed: ()async{
+                  if(customerNameController.value.text =="" ||customerEmailContactController.value.text ==""||customerPasswordController.value.text ==""){
+                    setState(() {
+                      registerFailed = "Please don't leave any fields empty";
+                    });
+
+                  }
+                  else {
+                    bool registrationSuccesful = await api().signUp(
+                        name: customerNameController.value.text,
+                        email: customerEmailContactController.value.text,
+                        password: customerPasswordController.value.text);
+                    if (registrationSuccesful) {
+                      setState(() {
+                        Navigator.pop(
+                            context); // so that it doesn't return to registration
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignIn())
+                        );
+                      });
+                    }
+                    else {
+                      registerFailed =
+                      "Was not able to register, check email/password!";
+                    }
+                  }
                 },
                 child: Text("Register"),
                 color:Colors.deepPurpleAccent,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xhasasmall/Authentication/Register.dart';
 import 'package:xhasasmall/Home/mainScreen.dart';
 
 void main() {
@@ -29,20 +30,21 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Container(
-        width:100,
-        height:100,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                    "Picture/background.png"
-                ),
-
-                fit: BoxFit.cover
-            )
-        ),
-        child:mainScreen()
-      ),
+      home: Register(),
+    //Container(
+//        width:100,
+//        height:100,
+//        decoration: BoxDecoration(
+//            image: DecorationImage(
+//                image: AssetImage(
+//                    "Picture/background.png"
+//                ),
+//
+//                fit: BoxFit.cover
+//            )
+//        ),
+//        child:Register()
+//      ),
     );
   }
 }

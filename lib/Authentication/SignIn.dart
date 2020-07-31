@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xhasasmall/Home/mainScreen.dart';
+import 'package:xhasasmall/Services/api.dart';
 import 'package:xhasasmall/Shared/Constants.dart';
 
 class SignIn extends StatefulWidget {
@@ -10,6 +12,7 @@ class _SignInState extends State<SignIn> {
 
   final customerPasswordController = TextEditingController();
   final customerEmailContactController = TextEditingController();
+  String signInFalse = "";//to represent whether sign in was succesfull or not
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +51,15 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               SizedBox(
-                  height:30
+                  height:15
+              ),
+              Text(
+                  signInFalse,
+                  style:TextStyle(
+                    color: Colors.red,
+                  )),
+              SizedBox(
+                height:15
               ),
               Container(
                   child:Text(
@@ -71,7 +82,7 @@ class _SignInState extends State<SignIn> {
                        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 12),
                        child: TextFormField(
                          controller: customerEmailContactController,
-                         decoration: textInputDecoration.copyWith(hintText: "Name"),
+                         decoration: textInputDecoration.copyWith(hintText: "Email"),
                        ),
                      ),
 
@@ -112,9 +123,40 @@ class _SignInState extends State<SignIn> {
                 height:50,
                 width:150,
                 child: FlatButton(
-                  onPressed: (){},
-                  child: Text("Sign In"),
+
+                  child: Text(
+                      "Sign In"
+                  ),
                   color:Colors.deepPurpleAccent,
+                  onPressed: ()async{
+                    if(customerEmailContactController.value.text ==""||customerPasswordController.value.text =="") {
+                      setState(() {
+                        signInFalse = "Please don't leave any fields empty";
+                      });
+                    }
+                    else{
+                      bool loginSuccesful = await api().login(customerEmailContactController.value.text, customerPasswordController.value.text);
+                      if(loginSuccesful == true){
+                        setState(() {
+                          Navigator.pop(context);// so it doesn't return to sign in
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => mainScreen())
+                          );
+                        });
+
+                      }
+                      else{
+                        setState(() {
+                        signInFalse = "Incorrect details supplied! try again";
+                        });
+                        }
+                    }
+
+
+
+                  },
                 ),
               )
 
