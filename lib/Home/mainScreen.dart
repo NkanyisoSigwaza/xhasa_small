@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:xhasasmall/Authentication/Register.dart';
 import 'package:xhasasmall/Home/BusinessDetail.dart';
 import 'package:xhasasmall/Home/Category.dart';
@@ -83,9 +84,14 @@ class _mainScreenState extends State<mainScreen> {
   @override
   Widget build(BuildContext context) {
     return Businesses == null
-        ? Container(
-            child: Text(""
-                "Nothing here"),
+          ? Container(
+             color:Colors.deepPurple,
+            child: Center(
+              child: SpinKitCubeGrid(
+        color: Colors.white,
+        size: 50.0,
+      ),
+            ),
           )
         : Scaffold(
             key: _scaffoldKey,
@@ -168,37 +174,49 @@ class _mainScreenState extends State<mainScreen> {
                 ],
               ),
             ),
-            body: Column(
-              children: [
-               Row(
-                 children: [
-                   Padding(
-                     padding: const EdgeInsets.all(16),
-                     child: GestureDetector(
-                       onTap:(){
-                         _scaffoldKey.currentState.openDrawer();
-                       },
-                       child: Icon(
-                         Icons.menu,
+            body: Container(
+              width:MediaQuery.of(context).size.width,
+              height:MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                          "Picture/background.png"
+                      ),
+
+                      fit: BoxFit.cover
+                  )
+              ),
+              child: Column(
+                children: [
+                 Row(
+                   children: [
+                     Padding(
+                       padding: const EdgeInsets.all(16),
+                       child: GestureDetector(
+                         onTap:(){
+                           _scaffoldKey.currentState.openDrawer();
+                         },
+                         child: Icon(
+                           Icons.menu,
 
 
+                         ),
                        ),
                      ),
-                   ),
-                   Padding(
-                     padding: const EdgeInsets.fromLTRB(80, 20, 10,10),
-                     child: Container(
-                       height: 100,
-                       width: 200,
-                       color: Colors.white,
-                       child: Image(
-                         image: AssetImage("Picture/xhasaSmallLogo.jpg"),
-                         fit: BoxFit.fill,
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(80, 20, 10,10),
+                       child: Container(
+                         height: 100,
+                         width: 200,
+                         color: Colors.white,
+                         child: Image(
+                           image: AssetImage("Picture/xhasaSmallLogo.jpg"),
+                           fit: BoxFit.fill,
+                         ),
                        ),
                      ),
-                   ),
-                 ],
-               ),
+                   ],
+                 ),
 //                Padding(
 //                  padding: const EdgeInsets.all(20),
 //                  child: Container(
@@ -211,98 +229,99 @@ class _mainScreenState extends State<mainScreen> {
 //                    ),
 //                  ),
 //                ),
-                Container(
-                  height: 100,
-                  color: Colors.grey,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width - 200,
-                        child: TextFormField(
-                          controller: myController,
-                          decoration: textInputDecoration.copyWith(
-                              hintText: "Enter product/service"),
+                  Container(
+                    height: 100,
+                    color: Colors.grey,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width - 200,
+                          child: TextFormField(
+                            controller: myController,
+                            decoration: textInputDecoration.copyWith(
+                                hintText: "Enter product/service"),
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: 60,
-                        child: FlatButton(
-                          child: Text("Search"),
-                          onPressed: () {
-                            print(
-                                "button clicked this is all she wrote ${myController.value.text}");
-                            setState(() {
-                              //Navigator.pop(context);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Register()));
-                            });
-                          },
-                          color: Colors.deepPurpleAccent[200],
-                        ),
-                      )
-                    ],
+                        Container(
+                          height: 60,
+                          child: FlatButton(
+                            child: Text("Search"),
+                            onPressed: () {
+                              print(
+                                  "button clicked this is all she wrote ${myController.value.text}");
+                              setState(() {
+                                //Navigator.pop(context);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Register()));
+                              });
+                            },
+                            color: Colors.deepPurpleAccent[200],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                Expanded(
-                  //So there is no overflow. allows grid to expand
-                  child: GridView.builder(
-                      gridDelegate:
-                          new SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: Businesses.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                print(
-                                    "You have selected ${Businesses[index].name}");
-                                setState(() {
-                                  //Navigator.pop(context);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => BusinessDetail(
-                                              business: Businesses[index])));
-                                });
-                              },
-                              child: Text(
-                                Businesses[index].name,
-                                style: TextStyle(
-                                  fontSize: 20,
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Expanded(
+                    //So there is no overflow. allows grid to expand
+                    child: GridView.builder(
+                        gridDelegate:
+                            new SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: Businesses.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  print(
+                                      "You have selected ${Businesses[index].name}");
+                                  setState(() {
+                                    //Navigator.pop(context);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => BusinessDetail(
+                                                business: Businesses[index])));
+                                  });
+                                },
+                                child: Text(
+                                  Businesses[index].name,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text( Businesses[index].tag),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Expanded(
-                              child: Container(
-                                width: 150,
-                                height: 100,
+                              Text( Businesses[index].tag),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  width: 150,
+                                  height: 100,
 //                          child: Image(
 //                            image:NetworkImage(businesses[index].url),
 //                            fit:BoxFit.cover,
 //                          ),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        );
-                      }),
-                ),
-              ],
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          );
+                        }),
+                  ),
+                ],
+              ),
             ),
           );
   }

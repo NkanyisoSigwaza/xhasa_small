@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:xhasasmall/Home/BusinessDetail.dart';
 
 class Category extends StatefulWidget {
@@ -34,8 +35,15 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return chosenBusinesses==null ? Container(
-      child: Text("No businesse fit that criteria"),
-    ) :Scaffold(
+      color:Colors.deepPurple,
+      child: Center(
+        child: SpinKitCubeGrid(
+          color: Colors.white,
+          size: 50.0,
+        ),
+      ),
+    )
+     :Scaffold(
       body: Column(
         children: [
           Row(
